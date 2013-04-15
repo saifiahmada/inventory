@@ -1,0 +1,42 @@
+<zk xmlns:x="xhtml" xmlns:zk="zk">
+	<window 
+		apply="org.zkoss.bind.BindComposer" width="100%" height="100%"
+		title="Tab2"  border="normal" closable="true"
+		viewModel="@id('vm') @init('com.trio.test.Tab2ViewModel')">
+		<groupbox closable="false" height="100%" vflex="1"
+			width="100%">
+			<listbox  vflex="1" model="@load(vm.documentList)" selectedItem="@bind(vm.selectedDocument)">
+				<listhead >
+					<listheader label="DocumentRSN"  align="center">
+					</listheader>
+					<listheader label="DocumentDesc"  align="center">
+					</listheader>
+					<listheader label="DocumentOrder"  align="center">
+					</listheader>
+					
+				</listhead>
+				<template name="model" sclass="vertical-scroll"
+					var="each">
+					<listitem >
+						<listcell label="@load(each.documentRSN)" />
+						<listcell label="@load(each.documentDesc)" />
+						<listcell label="@load(each.documentOrder)" />
+					</listitem>
+				</template>
+			</listbox>
+			<x:table width="100%" cellpadding="1" align="center">
+				<x:tr>
+					<x:td align="center">
+						<button label="Accept" width="100px"
+							onClick="@command('acceptDocumentRSN')">
+						</button>
+						</x:td>
+						
+				</x:tr>
+			</x:table>
+			
+		</groupbox>
+		
+		
+	</window>
+</zk>

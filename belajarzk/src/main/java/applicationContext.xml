@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="location" value="file:/home/glassfish/ZKGLASS/database.properties" 
+		/> </bean> -->
+
+	<bean
+		class="org.jasypt.spring.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg>
+			<bean class="org.jasypt.util.text.BasicTextEncryptor">
+				<property name="password" value="newWMS" />
+			</bean>
+		</constructor-arg>
+		<property name="locations">
+			<list>
+				<!-- config buat linux -->
+				<value>file:/home/glassfish/workspace/belajarzk/dbconfig.properties</value>
+				<!-- config buat windows -->	
+				<!--<value>file:D:\config\dbconfig.properties</value>--> 
+			</list>
+		</property>
+	</bean>
+
+	<!-- the data source class is recommend to use com.mchange.v2.c3p0.ComboPooledDataSource 
+		in production phase -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClass}" />
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<!-- define Hibernate sessionFactory provided by Spring ORM -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- set other Hibernate properties in hibernate.cfg.xml file -->
+		<property name="configLocation" value="hibernate.cfg.xml" />
+	</bean>
+
+	<!-- define Hibernate sessionFactory provided by Spring -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- for using annotation @Transaction in DAOs -->
+	<tx:annotation-driven />
+	
+	<bean id="trioMstaccessroleDao" class="com.saifiahmada.belajarzk.dao.TrioMstaccessroleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="trioMstmenuDao" class="com.saifiahmada.belajarzk.dao.TrioMstmenuDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="trioMstroleDao" class="com.saifiahmada.belajarzk.dao.TrioMstroleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="trioMstuserDao" class="com.saifiahmada.belajarzk.dao.TrioMstuserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="trioMstuserroleDao" class="com.saifiahmada.belajarzk.dao.TrioMstuserroleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="trioMstcabangDao" class="com.saifiahmada.belajarzk.dao.TrioMstcabangDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- master facade beans -->
+
+	<bean id="masterFacade" class="com.saifiahmada.belajarzk.facade.MasterFacade">
+		
+		<property name="trioMstcabangDao">
+			<ref bean="trioMstcabangDao" />
+		</property>
+		<property name="trioMstuserroleDao">
+			<ref bean="trioMstuserroleDao" />
+		</property>
+		<property name="trioMstaccessroleDao">
+			<ref bean="trioMstaccessroleDao" />
+		</property>
+		
+		<property name="trioMstmenuDao">
+			<ref bean="trioMstmenuDao" />
+		</property>
+		
+		<property name="trioMstroleDao">
+			<ref bean="trioMstroleDao" />
+		</property>
+		
+		<property name="trioMstuserDao">
+			<ref bean="trioMstuserDao" />
+		</property>
+		
+	</bean>
+</beans>

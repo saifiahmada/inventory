@@ -1,0 +1,58 @@
+<zk>
+	<style src="../css/triostyle.css" />
+	<div id="mstRole" 
+		height="100%" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.trio.viewmodel.mst.MstRoleVM')" validationMessages="@id('vmsgs')">
+
+		<separator />		
+		<groupbox form="@id('fx') @load(vm.current) @save(vm.current , before='save') @validator(vm.formValidator)" >
+		<caption label="Master Role" sclass="mycaption" />
+		<separator />			
+		<grid sclass="mygrid">
+			<columns visible="false">
+				<column width="100px" />
+				<column width="200px" />
+				<column width="200px" />
+			</columns>
+			<rows>
+				<row>
+					<cell><label value="Role Id" sclass="mylabel" /></cell>
+					<cell><textbox value="@bind(fx.trioMstrolePK.vroleid)" type="text" focus="true" sclass="mytext" /></cell>
+					<cell><label sclass="msgerror" value="@bind(vmsgs['fkey1'])" /></cell>
+				</row>
+				<row>
+					<cell><label value="Nama Role" sclass="mylabel" /></cell>
+					<cell><textbox value="@bind(fx.vrolename)" type="text" sclass="mytext" /></cell>
+					<cell><label sclass="msgerror" value="@bind(vmsgs['fkey2'])" /></cell>
+				</row>
+				<row>
+					<cell colspan="3">
+						<space width="100px" />
+						<button label="Simpan" sclass="mybutton orange bigrounded" onClick="@command('save')" image="/image/iconcrud/btn_save.gif" />
+						<space width="5px"/>
+						 <button label="Bersihkan" sclass="mybutton orange bigrounded" onClick="@command('reset')" image="/image/iconcrud/btn_reset.gif" />
+						<space width="5px"/>
+						<button label="Cari" sclass="mybutton orange bigrounded" onClick="@command('search')" image="/image/iconcrud/btn_search.gif" />
+					</cell>	
+				</row>
+			</rows>
+		</grid>
+		</groupbox>
+		<separator />
+		<listbox sclass="mylist" mold="paging" pageSize="10" pagingPosition="bottom"
+			selectedItem="@bind(vm.current)"
+			model="@load(vm.listModel)">
+			<listhead sizable="true">
+				<listheader width="100px" label="Role Id" sort="auto(trioMstrolePK.vroleid)" />
+				<listheader label="Role Nama" sort="auto(vrolename)" />
+			</listhead>
+			<template name="model" var="p1">
+				<listitem>
+					<listcell label="@load(p1.trioMstrolePK.vroleid)" />
+					<listcell label="@load(p1.vrolename)" />
+				</listitem>
+			</template>
+		</listbox>
+		
+	</div>
+</zk>

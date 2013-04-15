@@ -1,0 +1,85 @@
+<zk>
+	<style src="../css/triostyle.css" />
+	<window title="Popup Menu" position="center,top"
+		closable="true" width="500px" height="500px" mode="modal" 
+		border="normal" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.trio.popup.PopupMenuVM')">
+		
+		<groupbox>
+		<caption label="Master Menu" sclass="mycaption" />		
+		<grid sclass="mygrid">
+			<columns visible="false">
+				<column width="100px" />
+				<column width="200px" />
+			</columns>
+			<rows>
+				<row>
+					<cell><label value="Menu Id" sclass="mylabel" /></cell>
+					<cell><textbox value="@bind(vm.current.trioMstmenuPK.vmenuid)" type="text" focus="true" sclass="mytext"/></cell>
+				</row>
+				<row>
+					<cell><label value="Title" sclass="mylabel" /></cell>
+					<cell><textbox value="@bind(vm.current.vtitle)" type="text" sclass="mytext" /></cell>
+				</row>
+				<row>
+					
+					<cell><label value="Parent" sclass="mylabel" /></cell>
+					<cell>
+						 <combobox value="@bind(vm.current.vparent)" readonly="true">
+				               <comboitem label="M1MST" value="M1MST" />
+				               <comboitem label="M2TRN" value="M2TRN" />
+				               <comboitem label="M3DSG" value="M3DSG" />
+				               <comboitem label="M4LAP" value="M4LAP" />
+				               <comboitem label="M5UTL" value="M5UTL" />
+				               <comboitem label="M6ADM" value="M6ADM" />
+				         </combobox>
+					</cell>
+				</row>
+				<row>
+					<cell><label value="Location" sclass="mylabel" /></cell>
+					<cell><textbox value="@bind(vm.current.vlocation)" type="text" sclass="mytext" /></cell>
+				</row>
+				<row>
+					<cell><label value="Image" sclass="mylabel" /></cell>
+					<cell><textbox value="@bind(vm.current.vimage)" type="text" sclass="mytext" /></cell>
+				</row>
+				<row>
+					<cell><label value="Orderer" sclass="mylabel" /></cell>
+					<cell><intbox value="@bind(vm.current.norderer)" sclass="mytext" /></cell>
+				</row>
+				<row>
+					<cell colspan="3">
+						<space width="100px" />
+						<button label="Bersihkan" onClick="@command('reset')" image="/image/iconcrud/btn_reset.gif" sclass="mybutton orange bigrounded" />
+						<space width="5px" />
+						<button label="Cari" onClick="@command('search')" image="/image/iconcrud/btn_search.gif" sclass="mybutton orange bigrounded" />
+					</cell>	
+				</row>
+			</rows>
+		</grid>
+		</groupbox>
+		<separator />
+		<listbox sclass="mylist" mold="paging" pageSize="5" pagingPosition="bottom"
+			selectedItem="@bind(vm.current)" onSelect="@command('pilih')"
+			model="@load(vm.listModel)">
+			<listhead sizable="true">
+				<listheader width="100px" label="Menu Id" sort="auto(trioMstmenuPK.vmenuid)" />
+				<listheader width="150px" label="Title" sort="auto(vtitle)" />
+				<listheader width="100px" label="Parent" sort="auto(vparent)" />
+				<listheader width="250px" label="Location" sort="auto(vlocation)" />
+				<listheader width="250px" label="Image" sort="auto(vimage)" />
+				<listheader label="Orderer" sort="auto(norderer)" />
+			</listhead>
+			<template name="model" var="p1">
+				<listitem>
+					<listcell label="@load(p1.trioMstmenuPK.vmenuid)" />
+					<listcell label="@load(p1.vtitle)" />
+					<listcell label="@load(p1.vparent)" />
+					<listcell label="@load(p1.vlocation)" />
+					<listcell label="@load(p1.vimage)" />
+					<listcell label="@load(p1.norderer)" />
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

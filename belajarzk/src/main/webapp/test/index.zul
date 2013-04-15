@@ -1,0 +1,18 @@
+<?page title="User Interface" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="User Interface" border="normal"
+  apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.trio.test.UserInterfaceViewModel')" height="100%" width="100%">
+	
+		<tabbox  id="mainTab">
+				<tabs>
+					<tab label="Tab1" />
+				</tabs>
+				<tabpanels>
+					<tabpanel style="color:#333399;">
+						<include src="tab1.zul" />
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+			
+	</window>
+</zk>

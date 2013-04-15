@@ -1,0 +1,53 @@
+<zk>
+	<style src="/css/triostyle.css" />
+<window id="loginWin" border="normal" width="390px" height="340" title="GL Login"
+	apply="com.saifiahmada.belajarzk.view.ctrl.LoginCtrl" mode="overlapped" position="center,center" sclass="mywindow">
+
+	<style>
+		body { 
+			padding: 0 0; 
+			background-image:url(image/bgzk.jpeg);
+			background-repeat: repeat-x;
+			
+			/*background-size: 100%;*/
+		}
+		
+	</style>
+	<hbox>
+		<vbox>
+			<image src="/image/loginwong.jpg" />
+		</vbox>
+		<vbox>
+			
+			<grid sclass="mygrid">
+				<columns visible="false">
+					<column width="70px" />
+					<column width="200px" />
+				</columns>
+				<rows>
+					<row>
+						<cell><label value="Username" sclass="mylabel" /></cell>
+						<cell><textbox id="nameTxb" sclass="mytext" width="150px" /></cell>
+					</row>
+					<row>
+						<cell><label value="Password" sclass="mylabel" /></cell>
+						<cell><textbox id="passwordTxb" type="password" sclass="mytext" width="150px" /></cell>
+					</row>
+					
+					<row>
+						<cell colspan="2">
+							<space width="70px" />
+							<button id="confirmBtn" label="Login" sclass="mybutton orange bigrounded" image="/image/login.png" />
+							<space width="5px"/>
+							 <button id="cancelBtn" label="Reset" sclass="mybutton orange bigrounded" image="/image/reset.png" />
+						</cell>	
+					</row>
+				</rows>
+		
+			</grid>	
+		</vbox>
+	</hbox>
+	
+	
+</window>
+</zk>

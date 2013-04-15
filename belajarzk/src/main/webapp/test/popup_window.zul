@@ -1,0 +1,18 @@
+<zk xmlns:x="xhtml" xmlns:zk="zk">
+	<window
+		apply="org.zkoss.bind.BindComposer" width="700px" height="400px"
+		title="Select Document" mode="overlapped" border="normal" closable="true"
+		viewModel="@id('vm') @init('com.trio.test.PopUpViewModel')">
+	
+				<x:table  border="0">
+						<x:tr>
+							<x:td>
+							<textbox value="@bind(documentRSN)"></textbox>
+							</x:td>
+							<x:td>
+							<button label="Pick" onClick="@command('doPickDocumentRSN')"></button>
+							</x:td>
+						</x:tr>
+					</x:table>
+	</window>
+</zk>
