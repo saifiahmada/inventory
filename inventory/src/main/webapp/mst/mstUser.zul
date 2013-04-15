@@ -1,0 +1,69 @@
+<zk>
+	<style src="../css/triostyle.css" />	
+	<div
+		height="100%" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.trio.viewmodel.mst.MstUserVM')" validationMessages="@id('vmsgs')">
+		<separator />		
+		 <groupbox form="@id('fx') @load(vm.current) @save(vm.current, before='save') @validator(vm.formValidator)">
+		 <caption label="Master User" sclass="mycaption" />
+		 <separator />
+			    <grid sclass="mygrid">
+			        <columns visible="false">
+						<column width="100px" />
+						<column width="200px" />
+						<column width="200px" />
+					</columns>
+			        <rows>
+							<row>
+								<cell><label value="Username" sclass="mylabel" /></cell>
+								<cell><textbox value="@bind(fx.trioMstuserPK.vusername)" type="text" focus="true" sclass="mytext" /></cell>
+								<cell><label sclass="msgerror" value="@bind(vmsgs['fkey1'])"/></cell>
+							</row>
+							<row>
+								<cell><label value="Password" sclass="mylabel" /></cell>
+								<cell><textbox value="@bind(fx.vpassword)" type="password"  /></cell>
+								<cell><label sclass="msgerror" value="@bind(vmsgs['fkey2'])"/></cell>
+							</row>
+							<row>
+								<cell><label value="Status" sclass="mylabel" /></cell>
+								<cell>
+									<combobox value="@bind(fx.vstat)" readonly="true" >
+										<comboitem label="A" />
+										<comboitem label="X"/>
+									</combobox>
+								</cell>
+								<cell><label sclass="msgerror" value="@bind(vmsgs['fkey3'])"/></cell>
+							</row>
+							<row>
+								<cell colspan="3">
+									<space width="100px" />
+									<button label="Simpan" sclass="mybutton orange bigrounded" onClick="@command('save')" image="/image/iconcrud/btn_save.gif" />
+									<space width="5px"/>
+									 <button label="Bersihkan" sclass="mybutton orange bigrounded" onClick="@command('reset')" image="/image/iconcrud/btn_reset.gif" />
+									<space width="5px"/>
+									<button label="Cari" sclass="mybutton orange bigrounded" onClick="@command('search')" image="/image/iconcrud/btn_search.gif" />
+								</cell>	
+							</row>
+						</rows>
+			    </grid>
+			</groupbox>
+		 
+		<separator />
+		<listbox sclass="mylist" mold="paging" pageSize="10" pagingPosition="bottom"
+			selectedItem="@bind(vm.current)"
+			model="@load(vm.listModel)">
+			<listhead sizable="true">
+				<listheader width="100px" label="Username" sort="auto(trioMstuserPK.vusername)" />
+				<listheader width="250px" label="Password" sort="auto(vpassword)" />
+				<listheader label="Status" sort="auto(vstat)" />
+			</listhead>
+			<template name="model" var="p1">
+				<listitem>
+					<listcell label="@load(p1.trioMstuserPK.vusername)" />
+					<listcell label="@load(p1.vpassword)" />
+					<listcell label="@load(p1.vstat)" />
+				</listitem>
+			</template>
+		</listbox>
+	</div>
+</zk>

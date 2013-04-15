@@ -1,0 +1,25 @@
+<zk>
+	<!-- <style src="../css/triostyle.css"/>  -->
+	<style>
+		/* Start : label*/
+
+		.mylabel.z-label {
+			font-family: "Tahoma", verdana, arial, sans-serif;
+		  	font-size: 15px;
+		    font-weight: bolder;
+		    color: #64991e;
+		    background-color: none;
+		}
+		
+		/* End : label*/
+	</style>
+	<div 
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.trio.viewmodel.AwalVM')" validationMessages="@id('vmsgs')">
+		
+		<separator />
+		<label value="Selamat Datang di Aplikasi Temppro Trio Motor" sclass="mylabel"/>
+		
+		
+	</div>
+</zk>

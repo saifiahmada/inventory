@@ -1,0 +1,16 @@
+<zk>
+	<style>
+	.gold {background-image: none;background-color: gold;}
+	.cyan {background-image: none;background-color: cyan;}
+	.grey {background-image: none;background-color: #ffffe0;}
+	.blue {background-image: none;background-color: #b0c4de;}
+	</style>
+	<menubar sclass="gold">
+		<menu label="Topmost" sclass="cyan">
+			<menupopup sclass="grey">
+				<menuitem label="test" sclass="blue" />
+			</menupopup>
+		</menu>
+	</menubar>
+</zk>
+

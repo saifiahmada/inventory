@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database dialect untuk oracle-->
+		<!-- <property name="hibernate.dialect">org.hibernate.dialect.Oracle9iDialect</property> -->
+		
+		<!-- Database dialect untuk mysql-->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		
+		<!-- Echo all executed SQL to stdout -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<!-- <property name="hibernate.hbm2ddl.auto">create</property>  -->
+
+		<mapping class="com.saifiahmada.inventory.bean.TrioMstaccessrole" />
+		<mapping class="com.saifiahmada.inventory.bean.TrioMstmenu" />
+		<mapping class="com.saifiahmada.inventory.bean.TrioMstrole" />
+		<mapping class="com.saifiahmada.inventory.bean.TrioMstuser" />
+		
+		<mapping class="com.saifiahmada.inventory.bean.TrioMstuserrole" />
+		<mapping class="com.saifiahmada.inventory.bean.TrioMstcabang" />
+		 
+
+
+	</session-factory>
+</hibernate-configuration>

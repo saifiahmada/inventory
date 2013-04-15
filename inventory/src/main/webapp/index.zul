@@ -1,0 +1,67 @@
+<?page title="Tempro" contentType="text/html;charset=UTF-8"?>
+<?init class="com.trio.util.Interceptors" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon"?>
+<zk>
+<window id="win" apply="com.trio.component.TrioMenubar">
+	
+	<style>
+		body { 
+			padding: 0 0; 
+			background-image:url(image/bgzk.jpeg);
+			background-repeat: repeat-x;
+			
+			/*background-size: 100%;*/
+			
+		}
+	
+		.gold {background-image: none;background-color: gold;}
+		.cyan {background-image: none;background-color: cyan;}
+		.grey {background-image: none;background-color: #ffffe0;}
+		.blue {background-image: none;background-color: #b0c4de;}
+		.green {background-image: none;background-color: #94d73e;}
+		.tes {background: transparent none;}
+		
+.orange {
+    color: #fef4e9;
+    border: solid 1px #da7c0c;
+    background: #f78d1d;
+}
+
+.bigrounded {
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+	}
+
+.mytombol
+.z-menubar-hor .z-menu,
+.z-menubar-hor .z-menuitem,
+.z-menubar-hor .z-menu-btn,
+.z-menubar-hor .z-menuitem-btn,
+.z-menubar-hor span,.z-menubar-hor a,.z-menubar-hor div,
+.z-menubar-ver .z-menu,
+.z-menubar-ver .z-menuitem,
+.z-menubar-ver .z-menu-btn,
+.z-menubar-ver .z-menuitem-btn,
+.z-menubar-ver span,.z-menubar-ver a,.z-menubar-ver div,
+.z-menu-cnt, .z-menuitem-cnt {
+font-weight: bold;
+white-space: nowrap;
+font-family: "Tahoma", verdana, arial, sans-serif;
+font-size: 12px;
+color: white;
+}
+	
+	</style>
+	<hbox align="center" height="45px">
+			<label value="@{win$composer.user}" /> 
+	</hbox>
+	<menubar id="menubar" />
+	<borderlayout height="100%">
+			<north height="100%" splittable="true" collapsible="true" flex="true" border="normal">
+				<iframe id="iframe" src="" height="100%" />
+			</north>
+	</borderlayout> 
+</window> 
+</zk>

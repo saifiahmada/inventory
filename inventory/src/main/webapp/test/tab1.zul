@@ -1,0 +1,43 @@
+<zk xmlns:x="xhtml" xmlns:zk="zk">
+	<window apply="org.zkoss.bind.BindComposer" width="100%"
+		height="100%" title="Tab1" border="normal" closable="true"
+		viewModel="@id('vm') @init('com.trio.test.Tab1ViewModel')">
+		<groupbox closable="false" vflex="1" width="100%"
+		height="100%">
+			<listbox vflex="1" model="@load(vm.documentList)"
+				selectedItem="@bind(vm.selectedDocument)">
+				<listhead>
+					<listheader label="DocumentRSN" align="center">
+					</listheader>
+					<listheader label="DocumentDesc" align="center">
+					</listheader>
+					<listheader label="DocumentOrder" align="center">
+					</listheader>
+				</listhead>
+				<template name="model" sclass="vertical-scroll"
+					var="each">
+					<listitem
+						onClick="@command('doPickDocument',documentRSN=each.documentRSN)">
+						<listcell label="@load(each.documentRSN)" />
+						<listcell label="@load(each.documentDesc)" />
+						<listcell label="@load(each.documentOrder)" />
+					</listitem>
+				</template>
+			</listbox>
+
+			<x:table cellpadding="1" align="center">
+				<x:tr>
+					<x:td><!--
+						<textbox value="@bind(documentRSN)"></textbox>-->
+                                          
+					</x:td>
+					<x:td align="center">
+						<!--<button label="Pick" width="100px"
+							onClick="@command('doPickDocumentRSN')">
+						</button>-->
+					</x:td>
+				</x:tr>
+			</x:table>
+		</groupbox>
+	</window>
+</zk>

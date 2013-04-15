@@ -1,0 +1,52 @@
+<zk>
+	<style src="../css/triostyle.css" />
+	<window title="Popup User" closable="true" position="center,top" mode="modal" width="500px"
+		height="500px" border="normal" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.trio.popup.PopupUserVM')">
+				
+		<separator />
+		<groupbox>
+		<caption label="Master User" sclass="mycaption" />
+		<separator />
+		<grid sclass="mygrid">
+			<columns visible="false">
+				<column width="100px" />
+				<column width="200px" />
+			</columns>
+			<rows>
+				<row>
+					<cell><label value="Username" sclass="mylabel" /></cell>
+					<cell><textbox value="@bind(vm.current.trioMstuserPK.vusername)" type="text" sclass="mytext" /></cell>
+				</row>
+				<row>
+					<cell><label value="Status" sclass="mylabel" /></cell>
+					<cell><textbox value="@bind(vm.current.vstat)" type="text" sclass="mytext" /></cell>
+				</row>
+				<row>
+					<cell colspan="3">
+						<space width="100px" />
+						<button label="Bersihkan" onClick="@command('reset')" image="/image/iconcrud/btn_reset.gif" sclass="mybutton orange bigrounded" />
+						<space width="5px" />
+						<button label="Cari" onClick="@command('search')" image="/image/iconcrud/btn_search.gif" sclass="mybutton orange bigrounded" />
+					</cell>	
+				</row>
+			</rows>
+		</grid>
+		</groupbox>
+		<separator />
+		<listbox sclass="mylist" mold="paging" pageSize="10" pagingPosition="bottom"
+			selectedItem="@bind(vm.current)" onSelect="@command('pilih')" 
+			model="@load(vm.listModel)">
+			<listhead sizable="true">
+				<listheader width="100px" label="Username" sort="auto(trioMstuserPK.vusername)" />
+				<listheader label="Status" sort="auto(vstat)" />
+			</listhead>
+			<template name="model" var="p1">
+				<listitem>
+					<listcell label="@load(p1.trioMstuserPK.vusername)" />
+					<listcell label="@load(p1.vstat)" />
+				</listitem>
+			</template>
+		</listbox>
+	</window>
+</zk>

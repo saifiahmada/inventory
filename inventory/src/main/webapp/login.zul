@@ -1,0 +1,47 @@
+<?page title="Temppro"?>
+<?init class="com.trio.util.InterceptorAftLogin" ?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<?link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon"?>
+
+<window id="loginWin" border="normal" width="300px" title="WMS Login"
+	apply="com.trio.view.ctrl.LoginCtrl" mode="overlapped"
+	position="center,center">
+
+	<style>
+		body { 
+			padding: 0 0; 
+			background-image:url(image/bgzk.jpeg);
+			background-repeat: repeat-x;
+			
+			/*background-size: 100%;*/
+		}
+		
+	</style>
+
+	<grid>
+		<rows>
+			<row>
+				Username:
+				<textbox id="nameTxb" onChange="self.setValue(self.getValue().toUpperCase().trim());"/>
+			</row>
+			<row>
+				Password:
+				<textbox id="passwordTxb" type="password" />
+			</row>
+		</rows>
+
+	</grid>
+	<hbox>
+		<div style="margin-top:8px; font-weight:bold; ">
+			<button id="confirmBtn" label="Connect"
+				image="image/login1.png" width="90px" mold="trendy" forward="onOK" />
+		</div>
+		<div
+			style="margin-left:12px; margin-top:8px; font-weight:bold;">
+			<button id="cancelBtn" label="Cancel" width="90px"
+				mold="trendy" image="image/cancel.png" />
+		</div>
+		<label id="mesgLbl" maxlength="30" />
+	</hbox>
+
+</window>

@@ -1,0 +1,94 @@
+<zk>
+	<style src="../css/triostyle.css"/>
+	<div 
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.trio.viewmodel.mst.MstMenuVM')" validationMessages="@id('vmsgs')">
+		
+		<separator />
+		<groupbox form="@id('fx') @load(vm.current) @save(vm.current, before='save') @validator(vm.formValidator)">
+		<caption label="Master Menu" sclass="mycaption"/>
+		<separator />
+		<grid sclass="mygrid">
+			<columns visible="false">
+				<column width="100px" />
+				<column width="200px" />
+				<column width="200px" />
+			</columns>
+			<rows>
+				<row>
+					<cell><label value="Menu Id" sclass="mylabel"  /></cell>
+					<cell><textbox value="@bind(fx.trioMstmenuPK.vmenuid)" type="text" focus="true" sclass="mytext" /></cell>
+					<cell><label sclass="msgerror" value="@bind(vmsgs['fkey1'])" /></cell>
+				</row>
+				<row>
+					<cell><label value="Title" sclass="mylabel"  /></cell>
+					<cell><textbox value="@bind(fx.vtitle)" type="text" sclass="mytext" /></cell>
+					<cell><label sclass="msgerror" value="@bind(vmsgs['fkey2'])" /></cell>
+				</row>
+				<row>
+					<cell><label value="Parent" sclass="mylabel"  /></cell>
+					<cell>
+						 <combobox value="@bind(fx.vparent)" readonly="true" sclass="mytext">
+				               <comboitem label="M1MST" value="M1MST" />
+				               <comboitem label="M2TRN" value="M2TRN" />
+				               <comboitem label="M3DSG" value="M3DSG" />
+				               <comboitem label="M4LAP" value="M4LAP" />
+				               <comboitem label="M5UTL" value="M5UTL" />
+				               <comboitem label="M6ADM" value="M6ADM" />
+				         </combobox>
+					</cell>
+					<cell><label sclass="msgerror" value="@bind(vmsgs['fkey3'])" /></cell>
+				</row>
+				<row>
+					<cell><label value="Location" sclass="mylabel"  /></cell>
+					<cell><textbox value="@bind(fx.vlocation)" type="text" sclass="mytext" /></cell>
+					<cell><label sclass="msgerror" value="@bind(vmsgs['fkey4'])" /></cell>
+				</row>
+				<row>
+					<cell><label value="Image" sclass="mylabel"  /></cell>
+					<cell><textbox value="@bind(fx.vimage)" type="text" sclass="mytext" /></cell>
+					<cell><label sclass="msgerror" value="@bind(vmsgs['fkey5'])" /></cell>
+				</row>
+				<row>
+					<cell><label value="Orderer" sclass="mylabel" /></cell>
+					<cell><intbox value="@bind(fx.norderer)" sclass="mytext" /></cell>
+				</row>
+				<row>
+					<cell colspan="3">
+						<space width="100px" />
+						<button label="Simpan" sclass="mybutton orange bigrounded" onClick="@command('save')" image="/image/iconcrud/btn_save.gif" />
+						<space width="5px"/>
+						 <button label="Bersihkan" sclass="mybutton orange bigrounded" onClick="@command('reset')" image="/image/iconcrud/btn_reset.gif" />
+						<space width="5px"/>
+						<button label="Cari" sclass="mybutton orange bigrounded" onClick="@command('search')" image="/image/iconcrud/btn_search.gif" />
+					</cell>	
+				</row>
+			</rows>
+		</grid>
+		</groupbox>
+		<separator />
+		<listbox sclass="mylist" mold="paging" pageSize="10" pagingPosition="bottom"
+			selectedItem="@bind(vm.current)"
+			model="@load(vm.listModel)">
+			<listhead sizable="true">
+				<listheader width="100px" label="Menu Id" sort="auto(trioMstmenuPK.vmenuid)" />
+				<listheader width="150px" label="Title" sort="auto(vtitle)" />
+				<listheader width="100px" label="Parent" sort="auto(vparent)" />
+				<listheader width="250px" label="Location" sort="auto(vlocation)" />
+				<listheader width="250px" label="Image" sort="auto(vimage)" />
+				<listheader label="Orderer" sort="auto(norderer)" />
+			</listhead>
+			<template name="model" var="p1">
+				<listitem>
+					<listcell label="@load(p1.trioMstmenuPK.vmenuid)" />
+					<listcell label="@load(p1.vtitle)" />
+					<listcell label="@load(p1.vparent)" />
+					<listcell label="@load(p1.vlocation)" />
+					<listcell label="@load(p1.vimage)" />
+					<listcell label="@load(p1.norderer)" />
+				</listitem>
+			</template>
+		</listbox>
+		
+	</div>
+</zk>
